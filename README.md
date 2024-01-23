@@ -15,7 +15,7 @@ When it comes to object detection, popular detection frameworks are
 
 You can install by command:
   
-    $ pip install numpy opencv-python
+    pip install numpy opencv-python
 
 **Note: Compatability with Python 2.x is not officially tested.**
 
