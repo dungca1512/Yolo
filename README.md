@@ -12,6 +12,8 @@ When it comes to object detection, popular detection frameworks are
  ## Dependencies
   * opencv
   * numpy
+
+You can install by command:
   
     $ pip install numpy opencv-python
 
@@ -26,7 +28,10 @@ Download the pre-trained YOLO v3 weights file from this [link](https://pjreddie.
  Provided all the files are in the current directory, below command will apply object detection on the input image `dog.jpg`.
  
     $ python yolo_opencv.py --image dog.jpg --config yolov3.cfg --weights yolov3.weights --classes yolov3.txt
- 
+
+If you use Linux, you can using command:
+
+    $ python3 yolo_opencv.py --image dog.jpg --config yolov3.cfg --weights yolov3.weights --classes yolov3.txt
  
  **Command format** 
  
