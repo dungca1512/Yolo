@@ -2,37 +2,34 @@ import cv2
 import argparse
 import numpy as np
 import sys
+
 sys.path.append('/usr/local/lib/python3.10/site-packages')
 
 ap = argparse.ArgumentParser()
 ap.add_argument('-i', '--image', required=True,
                 help = 'path to input image')
-ap.add_argument('-c', '--config', required=True,
+ap.add_argument('-c', '--config', type=str,
+                default='./yolov3.cfg',
                 help = 'path to yolo config file')
-ap.add_argument('-w', '--weights', required=True,
+ap.add_argument('-w', '--weights', type=str,
+                default='./yolov3.weights',
                 help = 'path to yolo pre-trained weights')
-ap.add_argument('-cl', '--classes', required=True,
+ap.add_argument('-cl', '--classes', type=str,
+                default='./yolov3.txt',
                 help = 'path to text file containing class names')
 args = ap.parse_args()
 
 
 def get_output_layers(net):
-    
     layer_names = net.getLayerNames()
-    
     output_layers = [layer_names[i-1] for i in net.getUnconnectedOutLayers()]
-
     return output_layers
 
 
 def draw_prediction(img, class_id, confidence, x, y, x_plus_w, y_plus_h):
-
     label = str(classes[class_id])
-
     color = COLORS[class_id]
-
     cv2.rectangle(img, (x,y), (x_plus_w,y_plus_h), color, 2)
-
     cv2.putText(img, label, (x-10,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
     
@@ -92,8 +89,8 @@ for i in indices:
     h = box[3]
     draw_prediction(image, class_ids[i], confidences[i], round(x), round(y), round(x+w), round(y+h))
 
-cv2.imshow("object detection", image)
+cv2.imshow("Object detection", image)
 cv2.waitKey()
     
-cv2.imwrite("object-detection.jpg", image)
+cv2.imwrite("Object-detection.jpg", image)
 cv2.destroyAllWindows()
